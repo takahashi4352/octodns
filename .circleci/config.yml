@@ -85,6 +85,7 @@ workflows:
     build_and_deploy:
         jobs:
             - build
+              context: AWS
             - deploy:
                 requires:
                     # build ジョブに依存してるので、先に build ジョブを実行しろ！
