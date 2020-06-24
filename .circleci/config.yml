@@ -11,7 +11,8 @@ jobs:
                 # command: aws configure set region ap-northeast-1d
             - run:
                 name: build
-                command: pwd && git config --global user.name "katakatana" && git config --global user.email "tbol42356@gmail.com"
+                command: pwd
+                # command: pwd && git config --global user.name "katakatana" && git config --global user.email "tbol42356@gmail.com"
                 # command: aws deploy create-deployment --application-name appA-name --deployment-group-name appA-deploy-group --github-location repository="your/repository",commitId="$CIRCLE_SHA1"
     # EC2 に SSH 接続・デプロイを実行
     deploy:
