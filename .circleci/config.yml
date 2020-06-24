@@ -2,6 +2,7 @@ version: 2
  
 jobs:
     build:
+        working_directory: ~/circleci-python
         docker:
             - image: circleci/python:3.6.4
         steps:
@@ -16,6 +17,7 @@ jobs:
                 # command: aws deploy create-deployment --application-name appA-name --deployment-group-name appA-deploy-group --github-location repository="your/repository",commitId="$CIRCLE_SHA1"
     # EC2 に SSH 接続・デプロイを実行
     deploy:
+        working_directory: ~/circleci-python
         docker:
             image: circleci/python:3.6.4
             # image: circleci/classic:edge
@@ -25,7 +27,7 @@ jobs:
             # - add_ssh_keys:
             # CircleCI に登録した環境変数を使って SSH
             # - run: ssh ${USER_NAME}@${HOST_NAME}
-            - run: cd project
+            - run: cd circleci-python
             - run: python3 -m venv dnsenv
             - run: source dnsenv/bin/activate
             - run: pip3 install octodns
