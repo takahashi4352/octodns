@@ -39,16 +39,15 @@ jobs:
             - run:
                 name: AWS_ACCESS_KEY_ID
                 command: |
-                  export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                  export AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
-                  export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-            - run: echo "${AWS_SECRET_ACCESS_KEY}"
+                  export AWS_ACCESS_KEY_ID1=$AWS_ACCESS_KEY_ID
+                  export AWS_ACCESS_KEY_ID2=AWS_ACCESS_KEY_ID
+                  export AWS_ACCESS_KEY_ID3=$AWS_ACCESS_KEY_IDΩ
             - run:
                 name: AWS_SECRET_ACCESS_KEY
                 command: |
-                  export AWS_SECRET_ACCESS_KEY={$AWS_SECRET_ACCESS_KEY}
-                  export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                  export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+                  export AWS_SECRET_ACCESS_KEY1={$AWS_SECRET_ACCESS_KEY}
+                  export AWS_SECRET_ACCESS_KEY2=${AWS_SECRET_ACCESS_KEY}
+                  export AWS_SECRET_ACCESS_KEY3="${AWS_SECRET_ACCESS_KEY}"
             # - run: export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
             # - run: export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
             - run: printenv
