@@ -1,5 +1,5 @@
 version: 2
- 
+
 jobs:
     build:
         context: AWS
@@ -8,15 +8,12 @@ jobs:
             - image: circleci/python:3.6.4
         steps:
             - checkout
-            # - run:
-                # name: Set AWS region
-                # command: aws configure set region ap-northeast-1d
             - run: printenv
             - run:
-                name: build
-                command: pwd
-                # command: pwd && git config --global user.name "katakatana" && git config --global user.email "tbol42356@gmail.com"
-                # command: aws deploy create-deployment --application-name appA-name --deployment-group-name appA-deploy-group --github-location repository="your/repository",commitId="$CIRCLE_SHA1"
+                  name: build
+                  command: pwd
+                  # command: pwd && git config --global user.name "katakatana" && git config --global user.email "tbol42356@gmail.com"
+                  # command: aws deploy create-deployment --application-name appA-name --deployment-group-name appA-deploy-group --github-location repository="your/repository",commitId="$CIRCLE_SHA1"
     # EC2 に SSH 接続・デプロイを実行
     deploy:
         context: AWS
@@ -51,12 +48,12 @@ workflows:
     build_and_deploy:
         jobs:
             - build:
-                context: AWS
+                  context: AWS
             - deploy:
-                requires:
-                    # build ジョブに依存してるので、先に build ジョブを実行しろ！
-                    - build
-                # master ブランチに push された場合のみ deploy
-                filters:
-                    branches:
-                        only: master
+                  context: AWS
+                  requires:
+                      # build ジョブに依存してるので、先に build ジョブを実行しろ！
+                      - build
+                  filters:
+                      branches:
+                          only: master
