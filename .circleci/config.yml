@@ -34,8 +34,8 @@ jobs:
             - run: sudo pip install --upgrade pip
             - run: sudo pip3 install octodns
             - run: sudo pip3 install boto3
-            - run: export AWS_ACCESS_KEY_ID='AKIAYEPGHXDNDAXIYMAS'
-            - run: export AWS_SECRET_ACCESS_KEY='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'
+            - run: export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - run: export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
             # - run: git --version && printenv
             # - run: git colne https://github.com/katakakana/dns.git
             - run: octodns-validate --config-file ./octoDNS/production.yaml

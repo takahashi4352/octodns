@@ -4,7 +4,7 @@ manager:
 providers:
   config:
     class: octodns.provider.yaml.YamlProvider
-    directory: ./octoDNS/config
+    directory: ./octoDNS
     default_ttl: 3600
     enforce_order: True
   route53:
