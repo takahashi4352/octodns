@@ -19,7 +19,7 @@ jobs:
     deploy:
         working_directory: ~/circleci-python
         docker:
-            image: circleci/python:3.6.4
+            - image: circleci/python:3.6.4
             # image: circleci/classic:edge
         steps:
             - checkout
