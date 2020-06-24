@@ -1,0 +1,26 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+hosted_zone "katakana.com." do
+
+  # examples.com のAレコードにAliasとして”xxxxxxxxxxxx.ap-northeast-1.elb.amazonaws.com.”を追加
+  # rrset "katakana.com.", "A" do
+  #  dns_name "ap-northeast-1.elb.amazonaws.com."
+  # end
+
+  # Aレコードの設定
+  rrset "www.katakana.com.", "A" do
+    ttl 300
+    resource_records(
+      "192.168.0.2"
+    )
+  end
+
+  # MXレコードの設定
+  rrset "mx.katakana.com.", "MX" do
+    ttl 300
+    resource_records(
+      "100 mx.katakana.com"
+    )
+  end
+
+end
