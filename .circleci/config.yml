@@ -2,7 +2,6 @@ version: 2
  
 jobs:
     build:
-        working_directory: ~/circleci-demo-python-django
         docker:
             - image: circleci/python:3.6.4
         steps:
@@ -17,7 +16,7 @@ jobs:
                 # command: aws deploy create-deployment --application-name appA-name --deployment-group-name appA-deploy-group --github-location repository="your/repository",commitId="$CIRCLE_SHA1"
     # EC2 に SSH 接続・デプロイを実行
     deploy:
-        machine:
+        docker:
             image: circleci/python:3.6.4
             # image: circleci/classic:edge
         steps:
