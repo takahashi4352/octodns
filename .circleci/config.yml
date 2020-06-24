@@ -11,6 +11,8 @@ jobs:
             # - run:
                 # name: Set AWS region
                 # command: aws configure set region ap-northeast-1d
+            - run: echo AWS_ACCESS_KEY_ID
+            - run: echo AWS_SECRET_ACCESS_KEY
             - run:
                 name: build
                 command: pwd
@@ -49,6 +51,8 @@ jobs:
             - run: echo AWS_SECRET_ACCESS_KEY5='$AWS_SECRET_ACCESS_KEY'
             - run: echo AWS_SECRET_ACCESS_KEY6=$'AWS_SECRET_ACCESS_KEY'
             - run: echo AWS_SECRET_ACCESS_KEY7='{$AWS_SECRET_ACCESS_KEY}'
+            - run: echo AWS_ACCESS_KEY_ID
+            - run: echo AWS_SECRET_ACCESS_KEY
             - run: export AWS_SECRET_ACCESS_KEY1={$AWS_SECRET_ACCESS_KEY}
             - run: export AWS_SECRET_ACCESS_KEY2=${AWS_SECRET_ACCESS_KEY}
             - run: export AWS_SECRET_ACCESS_KEY3="${AWS_SECRET_ACCESS_KEY}"
