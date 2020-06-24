@@ -17,7 +17,8 @@ jobs:
     # EC2 に SSH 接続・デプロイを実行
     deploy:
         machine:
-            image: circleci/classic:edge
+            image: circleci/python:3.6.4
+            # image: circleci/classic:edge
         steps:
             - checkout
             # CircleCI に登録した秘密鍵を呼び出す
