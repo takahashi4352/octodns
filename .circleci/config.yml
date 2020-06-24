@@ -2,8 +2,11 @@ version: 2
  
 jobs:
     build:
+  build:
+        working_directory: ~/circleci-demo-python-django
         docker:
-            - image: cdssnc/aws-cli
+            # - image: cdssnc/aws-cli
+            - image: circleci/python:3.6.4
         steps:
             - checkout
             # - run:
@@ -21,6 +24,11 @@ jobs:
             # image: circleci/classic:edge
         steps:
             - checkout
+            # - run:
+              # command: |  # Pipenv を使用して依存関係をインストールします
+              # pip install pipenv
+              # pipenv install
+
             # CircleCI に登録した秘密鍵を呼び出す
             # - add_ssh_keys:
             # CircleCI に登録した環境変数を使って SSH
