@@ -11,6 +11,7 @@ jobs:
             # - run:
                 # name: Set AWS region
                 # command: aws configure set region ap-northeast-1d
+            - run: printenv
             - run:
                 name: build
                 command: pwd
