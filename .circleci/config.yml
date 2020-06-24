@@ -30,6 +30,7 @@ jobs:
             - run: python3 -m venv dnsenv
             - run: source dnsenv/bin/activate
             - run: pwd
+            - run: who
             - run: pip install --upgrade pip
             - run: pip3 install octodns
             - run: pip3 install boto3
