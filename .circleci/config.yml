@@ -1,7 +1,6 @@
 version: 2
  
 jobs:
-    build:
   build:
         working_directory: ~/circleci-demo-python-django
         docker:
