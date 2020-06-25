@@ -1,8 +1,8 @@
 version: 2
 
 jobs:
-    build:
-        context: AWS
+    # EC2 に SSH 接続・デプロイを実行
+    dns_change:
         working_directory: ~/circleci-python
         docker:
             - image: circleci/python:3.6.4
@@ -10,50 +10,31 @@ jobs:
             - checkout
             - run: printenv
             - run:
-                  name: build
-                  command: pwd
-                  # command: pwd && git config --global user.name "katakatana" && git config --global user.email "tbol42356@gmail.com"
-                  # command: aws deploy create-deployment --application-name appA-name --deployment-group-name appA-deploy-group --github-location repository="your/repository",commitId="$CIRCLE_SHA1"
-    # EC2 に SSH 接続・デプロイを実行
-    deploy:
-        context: AWS
-        working_directory: ~/circleci-python
-        docker:
-            - image: circleci/python:3.6.4
-            # image: circleci/classic:edge
-        steps:
-            - checkout
-            # CircleCI に登録した秘密鍵を呼び出す
-            # - add_ssh_keys:
-            # CircleCI に登録した環境変数を使って SSH
-            # - run: ssh ${USER_NAME}@${HOST_NAME}
-            - run: python3 -m venv dnsenv
-            - run: source dnsenv/bin/activate
-            - run: pwd
-            - run: who
-            - run: sudo pip install --upgrade pip
-            - run: sudo pip3 install octodns
-            - run: sudo pip3 install boto3
-            # - run: export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-            # - run: echo $AWS_ACCESS_KEY_ID
-            # - run: echo $AWS_SECRET_ACCESS_KEY
-            # - run: export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-            - run: printenv
-            - run: octodns-validate --config-file ./octoDNS/production.yaml
-            - run: octodns-sync --config-file=./octoDNS/production.yaml
-            - run: octodns-sync --config-file=./octoDNS/production.yaml --doit
+                  name: python3 build
+                  command: |-
+                     pwd
+                     python3 -m venv dnsenv
+                     source dnsenv/bin/activate
+                     sudo pip install --upgrade pip
+            - run:
+                  name: octoDNS build
+                  command: |-
+                     sudo pip3 install octodns
+                     sudo pip3 install boto3
+
+            - run:
+                  name: octoDNS run
+                  command: |-
+                     octodns-validate --config-file ./octoDNS/production.yaml
+                     octodns-sync --config-file=./octoDNS/production.yaml
+                     octodns-sync --config-file=./octoDNS/production.yaml --doit
 
 workflows:
     version: 2
-    build_and_deploy:
+    dns_change:
         jobs:
-            - build:
+            - dns_change:
                   context: AWS
-            - deploy:
-                  context: AWS
-                  requires:
-                      # build ジョブに依存してるので、先に build ジョブを実行しろ！
-                      - build
                   filters:
                       branches:
                           only: master
